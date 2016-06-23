@@ -5,12 +5,11 @@ import argparse
 
 import numpy as np
 from pandas import read_csv
-from csv import writer as to_csv
 
 from utils import *
 
-MAX_ITERATION = 500
-ALPHA = 0.03
+MAX_ITERATION = 5
+ALPHA = 0.01
 
 def split(data):
   ''' split data and predicts '''
@@ -25,12 +24,14 @@ def hypothesis(case, args):
 
 def save_args(args, dest):
   with open(dest, 'wb') as f:
-    writer = to_csv(f, dialect='excel')
-    writer.writerow(args)
+    for item in args:
+      f.write('{0},'.format(item))
 
 def get_args(args_path, dimension=0):
+  print args_path
+  print os.path.exists(args_path)
   if os.path.exists(args_path):
-    return np.array(read_csv(args_path, sep=',', header=None))[0, :-1]
+    return np.array(read_csv(args_path, sep=',', header=None))[:, :-1]
   else:
     return np.full(dimension, 0, dtype=np.float)
 
@@ -87,7 +88,7 @@ def main():
     save_args(args, files.args)
 
     if cli_args.plot:
-      plot(iters, J, 'Num of iteration', 'J', 'Gradient Descent', files.curve)
+      plot(iters, J, 'Num of iteration', 'J', 'Gradient Descent', files.curve, alpha=ALPHA)
 
   if cli_args.test:
     run_test(files)

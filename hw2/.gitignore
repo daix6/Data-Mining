@@ -1,0 +1,9 @@
+data/train.txt
+data/test.txt
+build/*
+!build/.gitkeep
+obj/*
+!obj/.gitkeep
+dest/*
+!obj/.gitkeep
+src/*.py

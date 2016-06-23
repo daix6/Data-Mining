@@ -29,7 +29,7 @@ def get_filenames():
 
   return fn(*filenames)
 
-def plot(x, y, xlabel, ylabel, title, dest):
+def plot(x, y, xlabel, ylabel, title, dest, alpha=None):
   plt.figure()
   plt.rc('font', family='serif')
 
@@ -45,6 +45,15 @@ def plot(x, y, xlabel, ylabel, title, dest):
 
   # plt.plot(x, y, '.', xnew, ynew, '--')
   plt.plot(x, y, '-')
+
+  if alpha:
+    box = dict(boxstyle='square', fc='w', ec='k')
+    pltxmin, pltxmax = plt.xlim()
+    pltymin, pltymax = plt.ylim()
+    textx = pltxmin + (pltxmax - pltxmin) / 2.
+    texty = pltymin + (pltymax - pltymin) / 2.
+    text = r'$\alpha = %.4f$' % alpha
+    plt.text(textx, texty, text, bbox=box)
 
   plt.savefig(dest)
   print 'Save', title, 'to', dest
