@@ -27,4 +27,4 @@ $(EXECUTABLE): $(OBJS)
 .PHONY: clean
 
 clean:
-		rm -rf $(OBJECT_DIR)/*.o $(EXECUTABLE) dest/theta*.csv
+		rm -rf $(OBJECT_DIR)/*.o $(EXECUTABLE) dest/theta*.csv build/*.csv

@@ -7,3 +7,7 @@ obj/*
 dest/*
 !obj/.gitkeep
 src/*.py
+log.txt
+doc/*
+!doc/report.tex
+!doc/report.pdf
